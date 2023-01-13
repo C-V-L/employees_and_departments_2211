@@ -3,14 +3,18 @@ class Department
   def initialize(name)
     @name = name
     @employees = []
-    @expenses = 0
+    @expenses = {}
   end
 
   def hire(employee)
     @employees << employee
   end
 
-  def expense(amount)
-    @expenses += amount
+  def expense(amount, employee)
+    @expenses[employee] = amount
+  end
+  
+  def total_expenses
+    @expenses.values.sum
   end
 end
