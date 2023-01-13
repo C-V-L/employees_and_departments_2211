@@ -11,6 +11,10 @@ class Department
   end
 
   def expense(amount, employee)
-    @expenses += amount
+    @expenses[employee] = amount
   end
+  
+  # def total_expenses
+
+  # end
 end
