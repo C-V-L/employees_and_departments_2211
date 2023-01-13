@@ -13,4 +13,14 @@ class Budget
   def departments_less_than_500
     @departments.find_all { |department| department.expenses < 500 }
   end
+
+  def employee_salaries
+    employee_hash = {}
+    @departments.each do |department|
+      department.employees.each do |employee|
+        employee_hash[employee] = employee.salary
+      end
+    end
+    employee_hash
+  end
 end
