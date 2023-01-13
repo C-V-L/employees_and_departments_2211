@@ -14,7 +14,7 @@ class Department
     @expenses[employee] = amount
   end
   
-  # def total_expenses
-
-  # end
+  def total_expenses
+    @expenses.values.sum
+  end
 end
