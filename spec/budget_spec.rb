@@ -48,10 +48,10 @@ RSpec.describe '' do
     describe '#department_expenses_less_than_500' do
       it 'can list all departments with expenses greater than 500' do
         expect(colorado.department_expenses_less_than_500).to contain_exactly(dmv, customer_service, tax_service)
-        dmv.expense(501)
-        tax_service.expense(499)
+        dmv.expense(501, kelly)
+        tax_service.expense(499, emily)
         expect(colorado.department_expenses_less_than_500).to contain_exactly(customer_service, tax_service)
-        tax_service.expense(1001)
+        tax_service.expense(1001, juan)
         expect(colorado.department_expenses_less_than_500).to contain_exactly(customer_service)
       end
     end
@@ -64,6 +64,12 @@ RSpec.describe '' do
                                                     james => 150000, 
                                                     juan => 190000, 
                                                     kelly => 105000 } )
+      end
+    end
+
+    describe '#expenses_by_employee' do
+      it 'can return a hash with employees as keys and their total expenses as values' do
+        expect(colorado.expenses_by_employee).to eq({})
       end
     end
   end

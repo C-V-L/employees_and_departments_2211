@@ -11,7 +11,7 @@ class Budget
   end
 
   def department_expenses_less_than_500
-    @departments.find_all { |department| department.expenses < 500 }
+    @departments.find_all { |department| department.total_expenses < 500 }
   end
 
   def employee_salaries
