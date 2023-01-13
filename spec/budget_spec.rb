@@ -48,7 +48,7 @@ RSpec.describe '' do
         tax_service.expense(499)
         expect(colorado.departments_less_than_500).to contain_exactly(customer_service, tax_service)
         tax_service.expense(1001)
-        expect(colorado.departments_less_than_500).to contain_exactly(tax_service)
+        expect(colorado.departments_less_than_500).to contain_exactly(customer_service)
       end
     end
   end
