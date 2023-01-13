@@ -45,14 +45,14 @@ RSpec.describe '' do
       end  
     end
     
-    describe '#departments_less_than_500' do
+    describe '#department_expenses_less_than_500' do
       it 'can list all departments with expenses greater than 500' do
-        expect(colorado.departments_less_than_500).to contain_exactly(dmv, customer_service, tax_service)
+        expect(colorado.department_expenses_less_than_500).to contain_exactly(dmv, customer_service, tax_service)
         dmv.expense(501)
         tax_service.expense(499)
-        expect(colorado.departments_less_than_500).to contain_exactly(customer_service, tax_service)
+        expect(colorado.department_expenses_less_than_500).to contain_exactly(customer_service, tax_service)
         tax_service.expense(1001)
-        expect(colorado.departments_less_than_500).to contain_exactly(customer_service)
+        expect(colorado.department_expenses_less_than_500).to contain_exactly(customer_service)
       end
     end
 
