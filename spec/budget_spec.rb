@@ -69,7 +69,12 @@ RSpec.describe '' do
 
     describe '#expenses_by_employee' do
       it 'can return a hash with employees as keys and their total expenses as values' do
-        expect(colorado.expenses_by_employee).to eq({})
+        dmv.expense(501, kelly)
+        tax_service.expense(499, emily)
+        tax_service.expense(1001, juan)
+        expect(colorado.expenses_by_employee).to eq({kelly => 501, emily => 499, juan => 1001})
+        customer_service.expense(756, bobbi)
+        expect(colorado.expenses_by_employee).to eq({kelly => 501, emily => 499, juan => 1001, bobbi => 756})
       end
     end
   end

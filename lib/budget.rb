@@ -23,4 +23,14 @@ class Budget
     end
     employee_hash
   end
+
+  def expenses_by_employee
+    expenses_hash = {}
+    @departments.each do |department|
+      department.expenses.each do |expense|
+        expenses_hash[expense[0]] = expense[1]
+      end
+    end
+    expenses_hash
+  end
 end
