@@ -7,14 +7,12 @@ RSpec.describe '' do
   let(:customer_service) { Department.new("Customer Service") }
   let(:tax_service) { Department.new("Tax Service") } 
   let(:dmv) { Department.new("DMV") }
-
   let(:bobbi) { Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"}) }
   let(:aaron) { Employee.new({name: "Aaron Tanaka", age: "25", salary: "90000"})  }
-
-  before(:each) do
-    customer_service.hire(bobbi)
-    customer_service.hire(aaron)    
-  end
+  let(:james) { Employee.new({name: "James G", age: "36", salary: "150000"}) }
+  let(:juan) { Employee.new({name: "Juan Romero", age: "28", salary: "190000"})  }
+  let(:kelly) { Employee.new({name: "Kelly Clarkson", age: "30", salary: "105000"}) }
+  let(:emily) { Employee.new({name: "Emily Hinteregger", age: "33", salary: "130000"})  }
 
   describe '#initialize' do
     it 'exists' do
@@ -30,6 +28,12 @@ RSpec.describe '' do
 
   describe 'instance methods' do
     before(:each) do
+      customer_service.hire(bobbi)
+      customer_service.hire(aaron)    
+      tax_service.hire(emily)
+      tax_service.hire(james) 
+      tax_service.hire(juan)
+      dmv.hire(kelly) 
       colorado.add_department(customer_service)
       colorado.add_department(dmv)
       colorado.add_department(tax_service)
@@ -49,6 +53,17 @@ RSpec.describe '' do
         expect(colorado.departments_less_than_500).to contain_exactly(customer_service, tax_service)
         tax_service.expense(1001)
         expect(colorado.departments_less_than_500).to contain_exactly(customer_service)
+      end
+    end
+
+    describe '#employee_salaries' do
+      it 'returns a hash of all employees as keys and their salary as values' do
+        expect(colorado.employee_salaries).to eq( { bobbi => 100000, 
+                                                    aaron => 90000, 
+                                                    emily => 130000, 
+                                                    james => 150000, 
+                                                    juan => 190000, 
+                                                    kelly => 105000 } )
       end
     end
   end
